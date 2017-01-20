@@ -1,0 +1,170 @@
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Elastic: Have not calculated for alpha = 0.10 radius = 50, l1_ratio = 0.00
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Non scramble: id of cases not passed are [370]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  1 , id of cases not passed are [370]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  50 , id of cases not passed are [370]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  200 , id of cases not passed are [370]
+Done with alpha=0.1, radius = 50 in 5151.14 seconds
+Elastic: Have not calculated for alpha = 0.10 radius = 50, l1_ratio = 0.50
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Non scramble: id of cases not passed are [370]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  1 , id of cases not passed are [370]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  50 , id of cases not passed are [370]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  200 , id of cases not passed are [370]
+Done with alpha=0.1, radius = 50 in 2591.72 seconds
+Elastic: Have not calculated for alpha = 0.10 radius = 50, l1_ratio = 1.00
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Non scramble: id of cases not passed are [370 454]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  1 , id of cases not passed are [278 370]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  50 , id of cases not passed are [240 370]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  200 , id of cases not passed are [370 454]
+Done with alpha=0.1, radius = 50 in 2542.08 seconds
+Elastic: Have not calculated for alpha = 0.10 radius = 100, l1_ratio = 0.00
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Non scramble: id of cases not passed are [370]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  1 , id of cases not passed are [370]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  50 , id of cases not passed are [370]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  200 , id of cases not passed are [370]
+Done with alpha=0.1, radius = 100 in 11619.90 seconds
+Elastic: Have not calculated for alpha = 0.10 radius = 100, l1_ratio = 0.50
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Non scramble: id of cases not passed are [370]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  1 , id of cases not passed are [370]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  50 , id of cases not passed are [370]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  200 , id of cases not passed are [370]
+Done with alpha=0.1, radius = 100 in 6115.56 seconds
+Elastic: Have not calculated for alpha = 0.10 radius = 100, l1_ratio = 1.00
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Non scramble: id of cases not passed are [ 61 370 454]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  1 , id of cases not passed are [370]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  50 , id of cases not passed are [370]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  200 , id of cases not passed are [370]
+Done with alpha=0.1, radius = 100 in 5025.07 seconds
+Elastic: Have not calculated for alpha = 1.00 radius = 50, l1_ratio = 0.00
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Non scramble: id of cases not passed are [370]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  1 , id of cases not passed are [370]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  50 , id of cases not passed are [370]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  200 , id of cases not passed are [370]
+Done with alpha=1.0, radius = 50 in 5988.39 seconds
+Elastic: Have not calculated for alpha = 1.00 radius = 50, l1_ratio = 0.50
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Non scramble: id of cases not passed are [370 454 477]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  1 , id of cases not passed are [311 334 338 370 454 457 477]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  50 , id of cases not passed are [311 338 370 454 457 477]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  200 , id of cases not passed are [370 454 477]
+Done with alpha=1.0, radius = 50 in 2548.47 seconds
+Elastic: Have not calculated for alpha = 1.00 radius = 50, l1_ratio = 1.00
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Non scramble: id of cases not passed are [101 202 311 334 335 370 454 477 493 585 659]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  1 , id of cases not passed are [ 83 311 334 335 338 370 454 457 477 493]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  50 , id of cases not passed are [311 334 335 338 370 454 457 477 493 549]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  200 , id of cases not passed are [311 334 335 338 370 454 457 477 493 494]
+Done with alpha=1.0, radius = 50 in 2446.22 seconds
+Elastic: Have not calculated for alpha = 1.00 radius = 100, l1_ratio = 0.00
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Non scramble: id of cases not passed are [370]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  1 , id of cases not passed are [370]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  50 , id of cases not passed are [370]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  200 , id of cases not passed are [370]
+Done with alpha=1.0, radius = 100 in 12586.65 seconds
+Elastic: Have not calculated for alpha = 1.00 radius = 100, l1_ratio = 0.50
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Non scramble: id of cases not passed are [370 454 477]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  1 , id of cases not passed are [370 454 457 477]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  50 , id of cases not passed are [370 454]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  200 , id of cases not passed are [370 454 477]
+Done with alpha=1.0, radius = 100 in 5484.12 seconds
+Elastic: Have not calculated for alpha = 1.00 radius = 100, l1_ratio = 1.00
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Non scramble: id of cases not passed are [311 334 370 454 477]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  1 , id of cases not passed are [311 334 335 338 370 454 457 477 493]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  50 , id of cases not passed are [311 334 335 338 370 454 457 477 493 499]
+pid 28834's current affinity mask: ff
+pid 28834's new affinity mask: ff
+Scramble with seed  200 , id of cases not passed are [179 311 334 335 370 454 457 477 493]
+Done with alpha=1.0, radius = 100 in 3960.28 seconds
