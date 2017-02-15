@@ -12,7 +12,7 @@ from tissue.ingest import (create_outcomes, ingest_ingestion, ingest_cells,
 
 
 DATA = "data"
-DB = "data/spots.db"
+DB = "data/spots_new.db"
 SPOTS = "input/clinical_data_with_chemo.csv"
 CELLS = "input/Filtered.QCed.NoTcorr.SegExclude.HighDAPI.log2.Median.Norm.Cells.csv"
 BIOMARKERS = "data/biomarkers.csv"

@@ -32,7 +32,7 @@ def create_outcomes(engine, metadata):
     with engine.connect() as conn:
         result = conn.execute(ins, outcome_list)
 
-
+        
 def ingest_spots(engine, metadata, path):
     # create relation
     spots = create_spots_table(metadata)
@@ -56,8 +56,8 @@ def ingest_spots(engine, metadata, path):
                                   'grade': int(row['GRADE']),
                                   'overall_outcome': row['Overall.Outcome'],
                                   'recurrent_5yr': int(row['recurevent5yrs']) == 1})
-
     # insert tuples into relation
+    print len(spot_list)
     ins = spots.insert()
     with engine.connect() as conn:
         result = conn.execute(ins, spot_list[:700])
@@ -160,3 +160,30 @@ def ingest_cells(engine, metadata, path, data_save_path):
     with engine.connect() as conn:
         result = conn.execute(ins, cell_list)
     
+#def ingest_spots(engine, metadata, path):
+#    # create relation
+#    spots = create_spots_table(metadata)
+#    metadata.create_all(engine)
+#    columns = spots.columns.keys()
+#    columns.remove("spot_id")
+
+#    spot_list = []
+#    with open(path) as f:
+#        f_csv = csv.DictReader(f)
+#        for row in f_csv:
+#            has_NA = [('NA' in row[r]) for r in fields]
+#            if sum(has_NA) == 0:
+#               spot_list.append({'spot_name': row['case_ID'], 
+#                                  'slide_name': row['slide_name'],
+#                                  'position': int(row['POSITION_ORDINAL']),
+#                                  'sex': int(row['SEX'])==1,
+#                                  'age': int(row['AGE.DX']),
+#                                  'chemo': int(row['chemo.final']) ==1,
+#                                  'stage_sumajc': int(row['SUMAJC']),
+#                                  'grade': int(row['GRADE']),
+#                                  'overall_outcome': row['Overall.Outcome'],
+#                                  'recurrent_5yr': int(row['recurevent5yrs']) == 1})
+#    # insert tuples into relation
+#    ins = spots.insert()
+#    with engine.connect() as conn:
+#        result = conn.execute(ins, spot_list[:700])
