@@ -1,0 +1,166 @@
+% data_dir = 'D:\Documents\colon_cancer_data\coordinates';
+% image_dir = 'D:\Documents\colon_cancer_data\H&E_virtual';
+% 
+% filelist = dir(fullfile(data_dir,'*.mat'));
+% filelist = {filelist.name}';
+% 
+% seg_dir = 'D:\Documents\multiplex\seg_output_50';
+% coordinate_dir = 'D:\Documents\multiplex\coordinates';
+% distance_shell = 15:10:205;
+% %output_dir = 'D:\Documents\colon_cancer_data\TME_autocorrelation';
+% output_dir = 'D:\Documents\multiplex\TME_correlation';
+% filelist = dir(fullfile(coordinate_dir,'*.mat'));
+% filelist = {filelist.name}';
+% 
+% if ~exist(output_dir,'dir')
+%     mkdir(output_dir);
+% end
+% % bm_names = {'Memb.CD8','Cyt.COX2','Cell.NaKATPase', 'Cell.MSH2',...
+% %              'Cell.pERK','Cyt.BetaCatenin','Cyt.pMAPKAPK2','Nuc.p21',...
+% %              'Memb.BetaCatenin','Nuc.CD8','Nuc.CD3','Cell.PI3Kp110a'};
+% 
+%          
+% bm_names = {'M.CD8','C.COX2','NaKATPase', 'MSH2',...
+%              'pERK','C.BCat','C.pMAPK','N.p21',...
+%              'M.BCat','N.CD8','N.CD3','PI3K'};
+
+data_dir = 'D:\Documents\multiplex';
+coordinate_dir = 'C:\Users\luong_nguyen\Box Sync\Colon Cancer Projects\data\csv_data_filtered';
+image_dir = 'D:\Documents\colon_cancer_data\H&E_virtual';
+seg_dir = 'D:\Documents\multiplex\seg_output_50';
+
+clinical_data = readtable(fullfile('D:\Documents\multiplex','clinical_data_all_spots.csv'),...
+    'Delimiter',',');
+filelist = clinical_data.spot_name;
+
+% find the index of SMA
+output_dir = fullfile(data_dir,'corr_tensor_168_bm_addnoise');
+
+if ~exist(output_dir,'dir')
+    mkdir(output_dir);
+end
+
+dist_vec = 0:15:120;
+%dist_vec = 0:7.5:60;
+
+output_raw_dir = 'C:\Users\luong_nguyen\Box Sync\Colon Cancer Projects\data\raw_data_filtered';
+tmp1 = load(fullfile(output_raw_dir,[filelist{1} '.mat']));   
+tmp2 = load(fullfile(coordinate_dir,[filelist{1} '.mat']));
+
+bm_names = tmp1.bm_names;
+bm_names{12} = 'ColIV';
+long_bm_names = cellfun(@(x) {['Median.Cell.' x]}, bm_names,'UniformOutput',false);
+%long_bm_names = cellfun(@(x) {['Median.Nuc.' x],['Median.Memb.' x],['Median.Cyt.' x]}, ...
+%    bm_names,'UniformOutput',false);
+long_bm_names = cat(2, long_bm_names{:})';
+
+indx_bm = cellfun(@(x) find(ismember(cellstr(tmp2.bm_names)',x)),...
+    long_bm_names,'UniformOutput',false);
+indx_bm = cat(1,indx_bm{:});         
+         
+         
+colors = distinguishable_colors(length(bm_names));
+for i = 1:length(filelist)
+    imname = filelist{i};
+    %imname = filelist{i}(1:end-4);
+    %tmp = load(fullfile(seg_dir, [imname '.mat']));
+    %seg_result = tmp.seg_result;
+    %seg = seg_result.seg;
+    %numSegs = max(seg(:));
+    
+    %im = imread(fullfile(seg_dir,[imname '.jpg']));
+    if ~exist(fullfile(coordinate_dir, [imname '.mat']),'file')
+        continue;
+    end
+    tmp = load(fullfile(coordinate_dir, [imname '.mat']));
+    x = tmp.x;
+    y = tmp.y;
+    
+    %indx_cells = sub2ind(size(seg),y,x);
+    epi_stroma = tmp.epithelial == 1;
+    area = tmp.area;
+    %bm_data = tmp.bm_data;
+    bm_data = tmp.bm_data(:,indx_bm);
+    
+    [wList, thetaList, lambdaList, errors] = GraphicalLassoPath(bm_data);
+    figure;
+    plot(graph(adj_mat, bm_names,'OmitSelfLoops')); 
+    
+    
+    %{
+    for j = 1:numSegs
+       area_seg = sum(seg(:) == j);
+       if area_seg < 15000
+           continue;
+       end
+       mask = seg == j;
+       imseg = im.*repmat(uint8(mask),[1 1 3]);
+       cells_in_mask = mask(indx_cells);
+       coord_mask = [x(cells_in_mask); y(cells_in_mask)]';
+       bm_mask = bm_data(cells_in_mask,:);
+       area_mask = area(cells_in_mask);
+       
+       %cov_mat = bm_mask'*bm_mask;
+       %[corr_mat, sigma] = corrcov(cov_mat);
+       corr_mat = corrcoef(bm_mask);
+       
+       figure('Position', [10, 10, 1100, 550]); 
+       subplot(1,4,1);
+       imshow(imseg);
+       subplot(1,4,[2 3]);
+       imagesc(abs(corr_mat)); axis square; colorbar; caxis([0 1]);
+       set(gca,'Xtick',1:1:12,'XtickLabel',bm_names,'XTickLabelRotation',45);
+       %set(gca,'Ytick',1:1:12,'YtickLabel',bm_names);
+       subplot(1,4,4);
+       adj_mat = abs(corr_mat - eye(length(bm_names)));
+       adj_mat(adj_mat < median(adj_mat(:))) = 0;
+       %corr_mat > median(corr_mat(:)) - eye(length(bm_names))
+       plot(graph(adj_mat, bm_names,'OmitSelfLoops')); axis off
+       print(fullfile(output_dir,[imname '_seg_' num2str(j)]) ,'-dpng');
+       close all;
+%        pairwise_distances = pdist(double(coord_mask));
+%        max_dist = max(pairwise_distances);
+%        pairwise_distances = squareform(pairwise_distances);
+%        
+%        curr_dist_shell = distance_shell(distance_shell < max_dist);
+%        
+%        bm_autocorr = cell(length(curr_dist_shell) - 1,1);
+%        omit_dist = [];
+%        for k = 1:length(curr_dist_shell) -1
+%            [r,c] = find(pairwise_distances >= curr_dist_shell(k) & ...
+%                pairwise_distances < curr_dist_shell(k+1));
+%            if length(r) < 10
+%                omit_dist = cat(1,omit_dist,[k+1]);
+%                continue;
+%            end
+%            cells_in_shell = [r,c];
+%            cells_in_shell = cells_in_shell(r < c,:);
+%            source = bm_mask(cells_in_shell(:,1),:);
+%            source = source - repmat(mean(source,1),size(source,1),1);
+%            target = bm_mask(cells_in_shell(:,2),:);
+%            target = target - repmat(mean(target,1),size(target,1),1);
+%            bm_autocorr{k} = mean(source.*target,1);%./std(target)./std(source);
+%        end
+%        curr_dist_shell(omit_dist) = [];
+%        bm_autocorr = cat(1,bm_autocorr{:});
+%        if isempty(bm_autocorr); continue;end
+%        figure('Position', [10, 10, 1000, 1000]); 
+%        subplot(3,3,[1 2 4 5])
+%        imshow(imseg);% hold on; plot(coord_mask(:,1), coord_mask(:,2),'.'); hold off;
+%        subplot(3,3,[7 8 9]);
+%        for m = 1:length(bm_names)
+%           plot(curr_dist_shell(2:end),bm_autocorr(:,m),...
+%               'Color',colors(m,:), 'LineWidth',3); hold on
+%        end
+%        hold off
+%        legend(bm_names{:},'Location','bestoutside');%legend('boxoff')
+%        xlim([0, max(distance_shell)]); set(gca,'FontSize',12);
+%        %ylim([0 2]);
+%        xlabel('Distances'); ylabel('autocorrelation');
+%        
+%        print(fullfile(output_dir,[imname '_seg_' num2str(j)]) ,'-dpng');
+%        close all
+       %save(fullfile(output_dir,[imname '_seg_' num2str(j) '.mat']),'curr_dist_shell','bm_diffs','bm_se');
+    end
+    %}
+end
